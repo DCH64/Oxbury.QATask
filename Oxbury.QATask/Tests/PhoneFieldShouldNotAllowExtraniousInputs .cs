@@ -5,11 +5,11 @@ namespace Oxbury.QATask.SeleniumSetUp
 {
     [TestFixture(SeleniumDevice.ChromeDesktop, "https://automationintesting.online/")]
     [TestFixture(SeleniumDevice.EdgeDesktop, "https://automationintesting.online/")]
-internal class FirstNameFieldShouldNotAllowExtraniousInputs : OxburyBannerCheck
+internal class PhoneFieldShouldNotAllowExtraniousInputs : OxburyBannerCheck
 {
     private string pageUrl;
 
-        public FirstNameFieldShouldNotAllowExtraniousInputs(SeleniumDevice device, string pageUrl) : base(device)
+        public PhoneFieldShouldNotAllowExtraniousInputs(SeleniumDevice device, string pageUrl) : base(device)
         {
             this.pageUrl = pageUrl;
         }
@@ -23,30 +23,30 @@ internal class FirstNameFieldShouldNotAllowExtraniousInputs : OxburyBannerCheck
         }
 
         [Test]
-        public void FirstnameFieldShouldNotAllowEmptyInputs()
+        public void PhoneFieldShouldNotAllowEmptyInputs()
         {
             BedAndBreakfastPage.ClickOnBookFormBtn(Driver);
-            BedAndBreakfastPage.SendKeysToFormfield(Driver, "firstname", "");
+            BedAndBreakfastPage.SendKeysToFormfield(Driver, "phone", "");
             BedAndBreakfastPage.ClickOnSubmitFormBtn(Driver);
-            BedAndBreakfastPage.CheckForCorrectAlert(Driver, "Firstname should not be blank");
+            BedAndBreakfastPage.CheckForCorrectAlert(Driver, "must not be empty");
         }
 
         [Test]
-        public void FirstnameFieldShouldNotBeLessThanThreeChars()
+        public void PhoneFieldShouldNotBeLessThanElevenChars()
         {
             BedAndBreakfastPage.ClickOnBookFormBtn(Driver);
-            BedAndBreakfastPage.SendKeysToFormfield(Driver, "firstname", "Da");
+            BedAndBreakfastPage.SendKeysToFormfield(Driver, "phone", "1111111111");
             BedAndBreakfastPage.ClickOnSubmitFormBtn(Driver);
-            BedAndBreakfastPage.CheckForCorrectAlert(Driver, "size must be between 3 and 18");
+            BedAndBreakfastPage.CheckForCorrectAlert(Driver, "size must be between 11 and 21");
         }
 
         [Test]
-        public void FirstnameFieldShouldNotBeMoreThanEighteenChars()
+        public void PhoneFieldShouldNotBeMoreThanTwentyOneChars()
         {
             BedAndBreakfastPage.ClickOnBookFormBtn(Driver);
-            BedAndBreakfastPage.SendKeysToFormfield(Driver, "firstname", "Dannnnnnnnnnnnnnnnn");
+            BedAndBreakfastPage.SendKeysToFormfield(Driver, "phone", "1111111111111111111111");
             BedAndBreakfastPage.ClickOnSubmitFormBtn(Driver);
-            BedAndBreakfastPage.CheckForCorrectAlert(Driver, "size must be between 3 and 18");
+            BedAndBreakfastPage.CheckForCorrectAlert(Driver, "size must be between 11 and 21");
         }
     }
 }

@@ -25,13 +25,15 @@ internal class FormSubmissionHappyPath : OxburyBannerCheck
         [Test]
         public void FormSubmissionWithExpectedValues()
         {
-            //I would have liked to set up an XML file to avoid hard coding values here but didn't due to time constraints.
+            //I would have liked to set up an XML file / test fixtures to avoid hard coding values here but didn't due to time constraints.
             BedAndBreakfastPage.ClickOnBookFormBtn(Driver);
             BedAndBreakfastPage.SendKeysToFormfield(Driver, "firstname", "Dan");
             BedAndBreakfastPage.SendKeysToFormfield(Driver, "lastname", "Hall");
             BedAndBreakfastPage.SendKeysToFormfield(Driver, "email", "D.C@test.com");
-            BedAndBreakfastPage.SendKeysToFormfield(Driver, "phone", "0123456789");
+            BedAndBreakfastPage.SendKeysToFormfield(Driver, "phone", "01234567890");
+            BedAndBreakfastPage.SelectTwoCalendarDates(Driver, "11", "12");
             BedAndBreakfastPage.ClickOnSubmitFormBtn(Driver);
+            BedAndBreakfastPage.VerifySubmissionSuccessMessageAppears(Driver);
         }
     }
 }
